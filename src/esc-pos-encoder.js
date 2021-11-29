@@ -2,7 +2,7 @@ const linewrap = require('linewrap');
 const {createCanvas} = require('canvas');
 const Dither = require('canvas-dither');
 const Flatten = require('canvas-flatten');
-const CodepageEncoder = require('codepage-encoder');
+const iconv = require('iconv-lite');
 
 
 const codepageMappings = {
@@ -212,7 +212,7 @@ class EscPosEncoder {
     */
   _encode(value) {
     if (this._codepage != 'auto') {
-      return CodepageEncoder.encode(value, this._codepage);
+      return iconv.encode(value, 'ascii');
     }
 
     let codepages;
@@ -343,7 +343,7 @@ class EscPosEncoder {
 
 
 
-  
+
   /**
      * Initialize the printer
      *
@@ -972,7 +972,7 @@ class EscPosEncoder {
     };
 
     if (symbology in symbologies) {
-      const bytes = CodepageEncoder.encode(value, 'ascii');
+      const bytes = iconv.encode(value, 'ascii');
 
       if (this._cursor != 0) {
         this.newline();
@@ -1099,7 +1099,7 @@ class EscPosEncoder {
 
     /* Data */
 
-    const bytes = CodepageEncoder.encode(value, 'iso88591');
+    const bytes = iconv.encode(value, 'ascii');
     const length = bytes.length + 3;
 
     this._queue([
