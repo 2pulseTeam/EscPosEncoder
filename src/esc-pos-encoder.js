@@ -3,6 +3,7 @@ const {createCanvas} = require('canvas');
 const Dither = require('canvas-dither');
 const Flatten = require('canvas-flatten');
 const iconv = require('iconv-lite');
+const CodepageEncoder = require('codepage-encoder');
 
 
 const codepageMappings = {
