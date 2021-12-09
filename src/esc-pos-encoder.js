@@ -213,7 +213,7 @@ class EscPosEncoder {
     */
   _encode(value) {
     if (this._codepage != 'auto') {
-      return iconv.encode('windows1252', 'ascii');
+      return iconv.encode(value, 'windows1252');
     }
 
     let codepages;
@@ -973,7 +973,7 @@ class EscPosEncoder {
     };
 
     if (symbology in symbologies) {
-      const bytes = iconv.encode('windows1252', 'ascii');
+      const bytes = iconv.encode(value, 'windows1252');
 
       if (this._cursor != 0) {
         this.newline();
@@ -1100,7 +1100,7 @@ class EscPosEncoder {
 
     /* Data */
 
-    const bytes = iconv.encode('windows1252', 'ascii');
+    const bytes = iconv.encode(value, 'windows1252');
     const length = bytes.length + 3;
 
     this._queue([
