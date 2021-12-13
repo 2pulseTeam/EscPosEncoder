@@ -190,7 +190,7 @@ class EscPosEncoder {
     this._buffer = [];
     this._queued = [];
     this._cursor = 0;
-    this._codepage = 'ascii';
+    this._codepage = 'windows1252';
 
     this._state = {
       'codepage': 0,
